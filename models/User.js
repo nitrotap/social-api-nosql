@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const valEmail = function (a) {
 	const regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
@@ -18,7 +19,7 @@ const UserSchema = new Schema(
 			required: true,
 			trim: true,
 			unique: true,
-			validate: [valEmail, 'Invalid Email. Please Try Again!']
+			match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/, 'Invalid Email! Please Try Again!']
 		},
 		createdAt: {
 			type: Date,

@@ -3,7 +3,7 @@ const dateFormat = require('../utils/dateFormat');
 
 const ReactionSchema = new Schema(
 	{
-		// set custom id to avoid confusion with parent comment _id
+		// set custom id to avoid confusion with parent Thought _id
 		reactionId: {
 			type: Schema.Types.ObjectId,
 			default: () => new Types.ObjectId()
@@ -65,9 +65,8 @@ const ThoughtSchema = new Schema(
 	}
 );
 
-// get total count of comments and replies on retrieval
-UserSchema.virtual('friendCount').get(function () {
-	return this.friends.length;
+ThoughtSchema.virtual('replyCount').get(function () {
+	return this.replies.length;
 });
 
 const Thought = model('Thought', ThoughtSchema);
