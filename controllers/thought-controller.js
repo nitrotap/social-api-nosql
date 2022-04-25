@@ -14,7 +14,7 @@ const ThoughtController = {
 	},
 	// get one Thought by id
 	getThoughtById({ params }, res) {
-		Thought.findOne({ _id: params.id })
+		Thought.findOne({ _id: params.thoughtId })
 			.populate({
 				path: 'reactions',
 				select: '-__v'
@@ -51,7 +51,7 @@ const ThoughtController = {
 
 	// update Thought by id
 	updateThought({ params, body }, res) {
-		Thought.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
+		Thought.findOneAndUpdate({ _id: params.thoughtId }, body, { new: true, runValidators: true })
 			.then(dbThoughtData => {
 				if (!dbThoughtData) {
 					res.status(404).json({ message: 'No Thought found with this id!' });
@@ -65,7 +65,7 @@ const ThoughtController = {
 	// add Reaction to Thought
 	addReaction({ params, body }, res) {
 		Thought.findOneAndUpdate(
-			{ _id: params.ThoughtId },
+			{ _id: params.thoughtId },
 			{ $push: { reactions: body } },
 			{ new: true, runValidators: true }
 		)
@@ -81,40 +81,16 @@ const ThoughtController = {
 
 	// delete Thought
 	removeThought({ params }, res) {
-		Thought.findOneAndDelete({ _id: params.id })
+		Thought.findOneAndDelete({ _id: params.thoughtId })
 			.then(dbThoughtData => res.json(dbThoughtData))
 			.catch(err => res.json(err));
 	},
 
-	// remove Thought
-	// removeThought({ params }, res) {
-	// 	Thought.findOneAndDelete({ _id: params.id })
-	// 		.then(deletedThought => {
-	// 			if (!deletedThought) {
-	// 				return res.status(404).json({ message: 'No Thought with this id!' });
-	// 			}
-	// 			return Thought.findOneAndUpdate(
-	// 				{ _id: params.id },
-	// 				{ $pull: { Thoughts: params.id } },
-	// 				{ new: true }
-	// 			);
-	// 		})
-	// 		.then(dbThoughtData => {
-	// 			if (!dbThoughtData) {
-	// 				res.status(404).json({ message: 'No Thought found with this id!' });
-	// 				return;
-	// 			}
-	// 			res.json(dbThoughtData);
-	// 		})
-	// 		.catch(err => res.json(err));
-	// },
-
 
 	// remove Reaction
-
 	removeReaction({ params }, res) {
 		Thought.findOneAndUpdate(
-			{ _id: params.ThoughtId },
+			{ _id: params.thoughtId },
 			{ $pull: { reactions: { reactionId: params.reactionId } } },
 			{ new: true }
 		)
