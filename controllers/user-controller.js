@@ -58,6 +58,8 @@ const UserController = {
 			.then(dbUserData => res.json(dbUserData))
 			.catch(err => res.json(err));
 	}
+
+
 };
 
 module.exports = UserController;

@@ -1,6 +1,17 @@
 const { Thought, User } = require('../models');
 
 const ThoughtController = {
+
+	getAllThought(req, res) {
+		Thought.find({})
+			.select('-__v')
+			.sort({ _id: -1 })
+			.then(dbThoughtData => res.json(dbThoughtData))
+			.catch(err => {
+				console.log(err);
+				res.sendStatus(400);
+			});
+	},
 	// add Thought to User
 	addThought({ params, body }, res) {
 		console.log(params);
