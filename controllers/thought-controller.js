@@ -23,8 +23,8 @@ const ThoughtController = {
 			.catch(err => res.json(err));
 	},
 
-	// add reply to Thought
-	addReply({ params, body }, res) {
+	// add Reaction to Thought
+	addReaction({ params, body }, res) {
 		Thought.findOneAndUpdate(
 			{ _id: params.ThoughtId },
 			{ $push: { reactions: body } },
@@ -62,8 +62,8 @@ const ThoughtController = {
 			})
 			.catch(err => res.json(err));
 	},
-	// remove reply
-	removeReply({ params }, res) {
+	// remove Reaction
+	removeReaction({ params }, res) {
 		Thought.findOneAndUpdate(
 			{ _id: params.ThoughtId },
 			{ $pull: { reactions: { reactionId: params.reactionId } } },
