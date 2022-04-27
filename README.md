@@ -7,12 +7,12 @@
   
 
   ## Table of Contents   
-  * [Installation](#Installation)   
-  * [Usage](#Usage)   
-     
-     
-  * [Questions](#Questions)    
-  * [License](#License)   
+* [Installation](#Installation)   
+* [Usage](#Usage)   
+* [Walk-through Video](#Walk-Through)
+* [Screen Shots](#Screen-Shots)
+* [Questions](#Questions)    
+* [License](#License)   
 
 
 
@@ -24,7 +24,11 @@
 ```npm start```     
   
     
+## Walk-Through
+[Link to Walk-through Video](https://drive.google.com/file/d/16hzRFAdb2wRWu8GSR8f_s-nofizwftp-/view)    
 
+## Screen-Shots   
+<img src="./assets/images/sapi-walkthrough.gif" width="50%" height="50%">
      
 
   ## Questions   
